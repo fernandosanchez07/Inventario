@@ -11,15 +11,15 @@ import java.util.Date;
 public class FechaMercanciaValidator {
 
     public MensajeResponseDto fechaValidator(MercanciaEntity mercanciaEntity) {
-        MensajeResponseDto deleteValidatorResponse = new MensajeResponseDto();
+        MensajeResponseDto mensajeResponseDto = new MensajeResponseDto();
         Date date = new Date();
         if (mercanciaEntity.getFechaRegistro().after(date)) {
-            deleteValidatorResponse.setStatus(HttpStatus.BAD_REQUEST);
-            deleteValidatorResponse.setMensaje("La fecha no puede ser mayor a la actual: " + mercanciaEntity.getFechaRegistro());
-            return deleteValidatorResponse;
+            mensajeResponseDto.setStatus(HttpStatus.BAD_REQUEST);
+            mensajeResponseDto.setMensaje("La fecha no puede ser mayor a la actual: " + mercanciaEntity.getFechaRegistro());
+            return mensajeResponseDto;
         }
-        deleteValidatorResponse.setStatus(HttpStatus.OK);
-        deleteValidatorResponse.setMensaje("");
-        return deleteValidatorResponse;
+        mensajeResponseDto.setStatus(HttpStatus.OK);
+        mensajeResponseDto.setMensaje("");
+        return mensajeResponseDto;
     }
 }

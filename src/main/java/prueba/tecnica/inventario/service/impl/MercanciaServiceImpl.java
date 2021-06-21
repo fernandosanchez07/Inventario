@@ -14,6 +14,7 @@ import prueba.tecnica.inventario.validator.NombreMercanciaValidator;
 import prueba.tecnica.inventario.validator.UpdateMercanciaIdValidator;
 import prueba.tecnica.inventario.validator.UpdateNombreMercanciaValidator;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -51,7 +52,10 @@ public class MercanciaServiceImpl implements MercanciaService {
             mensajeResponse.setMensaje("Registro fallido, se encontro un registro con esta nombre.");
             return mensajeResponse;
         }
+        Date fechaActual = new Date();
         mercanciaEntity.setUsuarioUpdate(mercanciaEntity.getUsuarioRegister());
+        mercanciaEntity.setFechaRegistro(fechaActual);
+        mercanciaEntity.setFechaActualizacion(fechaActual);
         mercanciaDao.save(mercanciaEntity);
         mensajeResponse.setStatus(HttpStatus.CREATED);
         mensajeResponse.setMensaje("Registro exitoso.");
